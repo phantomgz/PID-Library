@@ -1,4 +1,4 @@
-/**********************************************************************************************
+﻿/**********************************************************************************************
  * Arduino PID Library - Version 1.2.1
  * by Brett Beauregard <br3ttb@gmail.com> brettbeauregard.com
  *
@@ -11,7 +11,7 @@
 //  #include "WProgram.h"
 //#endif
 
-#include "PID.h"
+#include "PID_v1.h"
 
 /*Constructor (...)*********************************************************
  *    The parameters specified here are those for for which we can't set up
