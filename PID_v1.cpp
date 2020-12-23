@@ -11,7 +11,7 @@
 //  #include "WProgram.h"
 //#endif
 
-#include <PID_v1.h>
+#include "PID.h"
 
 /*Constructor (...)*********************************************************
  *    The parameters specified here are those for for which we can't set up
@@ -28,12 +28,12 @@ PID::PID(double* Input, double* Output, double* Setpoint,
     PID::SetOutputLimits(0, 255);				//default output limit corresponds to
 												//the arduino pwm limits
 
-    SampleTime = 100;							//default Controller Sample Time is 0.1 seconds
+    SampleTime = 1000;							//default Controller Sample Time is 0.1 seconds
 
     PID::SetControllerDirection(ControllerDirection);
     PID::SetTunings(Kp, Ki, Kd, POn);
 
-    lastTime = millis()-SampleTime;
+//    lastTime = millis()-SampleTime;
 }
 
 /*Constructor (...)*********************************************************
@@ -57,6 +57,8 @@ PID::PID(double* input, double* output, double* setpoint)
     SampleTime = 1000;  // * default Controller Sample Time is 1 second,
                         // and keep SetTuning() don't change Ki/Kd
 }
+
+
 
 /* Compute() **********************************************************************
  *     This, as they say, is where the magic happens.  this function should be called
@@ -97,10 +99,10 @@ bool PID::Compute()
 
       /*Remember some variables for next time*/
       lastInput = input;
-      lastTime = now;
+      //lastTime = now;
 	    return true;
    }
-   else return false;
+//   else return false;
 }
 
 /* SetTunings(...)*************************************************************
