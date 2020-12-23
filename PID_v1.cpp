@@ -5,11 +5,11 @@
  * This Library is licensed under the MIT License
  **********************************************************************************************/
 
-#if ARDUINO >= 100
-  #include "Arduino.h"
-#else
-  #include "WProgram.h"
-#endif
+//#if ARDUINO >= 100
+//  #include "Arduino.h"
+//#else
+//  #include "WProgram.h"
+//#endif
 
 #include <PID_v1.h>
 
@@ -48,6 +48,15 @@ PID::PID(double* Input, double* Output, double* Setpoint,
 
 }
 
+// by phantom:
+PID::PID(double* input, double* output, double* setpoint)
+{
+    myInput = input;
+    myOutput = output;
+    mySetpoint = setpoint;
+    SampleTime = 1000;  // * default Controller Sample Time is 1 second,
+                        // and keep SetTuning() don't change Ki/Kd
+}
 
 /* Compute() **********************************************************************
  *     This, as they say, is where the magic happens.  this function should be called
@@ -58,9 +67,9 @@ PID::PID(double* Input, double* Output, double* Setpoint,
 bool PID::Compute()
 {
    if(!inAuto) return false;
-   unsigned long now = millis();
-   unsigned long timeChange = (now - lastTime);
-   if(timeChange>=SampleTime)
+//   unsigned long now = millis();
+//   unsigned long timeChange = (now - lastTime);
+//   if(timeChange>=SampleTime)
    {
       /*Compute all the working error variables*/
       double input = *myInput;
